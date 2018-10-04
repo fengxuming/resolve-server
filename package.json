@@ -1,0 +1,38 @@
+{
+  "name": "resolve-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengxuming/resolve-server.git"
+  },
+  "author": "fengxuming",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fengxuming/resolve-server/issues"
+  },
+  "homepage": "https://github.com/fengxuming/resolve-server#readme",
+  "dependencies": {
+    "@koa/cors": "^2.2.2",
+    "bcrypt-nodejs": "0.0.3",
+    "cors": "^2.8.4",
+    "jsonwebtoken": "^8.3.0",
+    "koa": "^2.5.3",
+    "koa-body": "^4.0.4",
+    "koa-bodyparser": "^4.2.1",
+    "koa-jwt": "^3.5.1",
+    "koa-mount": "^4.0.0",
+    "koa-route": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "md5": "^2.2.1",
+    "md5-file": "^4.0.0",
+    "mongoose": "^5.3.0",
+    "mongoose-hidden": "^1.6.0"
+  }
+}
