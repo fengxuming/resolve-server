@@ -2,7 +2,15 @@ const Router = require('koa-router');
 const router = new Router();
 const User = require("../models/user");
 
-
+router.all("*",async(ctx,next)=>{
+    if(ctx.request.user&&(ctx.request.user.role == "admin")){
+        await next();
+    }else{
+        ctx.body = {
+            success:false
+        }
+    }
+});
 
 router.get("/",async(ctx)=>{
     let userList = await User.find({});

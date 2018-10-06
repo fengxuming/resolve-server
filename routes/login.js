@@ -14,27 +14,31 @@ router.post("/",async(ctx)=>{
         ctx.body = {
             success:false
         };
-    }
-    let isMatch = user.comparePassword(password);
-    
-    if(!isMatch){
-       
-        ctx.body = {
-            success:false
-        };
-    }else{
-        let content ={msg:"resolve",username:username}; // 要生成token的主题信息
-        let secretOrPrivateKey="reject";
-        let token = await jwt.sign(content, secretOrPrivateKey, {
-            expiresIn: 60*60*24  // 24小时过期
-        });
         
-        ctx.body = {
-            success: true,
-            access_token: token,
-            user:user
-        };
     }
+    else{
+        let isMatch = await user.comparePassword(password);
+    
+        if(!isMatch){
+        
+            ctx.body = {
+                success:false
+            };
+        }else{
+            let content ={msg:"resolve",username:username}; // 要生成token的主题信息
+            let secretOrPrivateKey="reject";
+            let token = await jwt.sign(content, secretOrPrivateKey, {
+                expiresIn: 60*60*24  // 24小时过期
+            });
+            
+            ctx.body = {
+                success: true,
+                access_token: token,
+                user:user
+            };
+        }
+    }
+    
 
     
 });

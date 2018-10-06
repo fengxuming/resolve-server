@@ -6,7 +6,7 @@ const mongooseHidden  = require("mongoose-hidden")();
 let bangumiSchema = new Schema({
     title:{type:String,required:true},
     info:{type:String},
-    cover:{type:String},
+    cover:{type:mongoose.Schema.Types.ObjectId,ref:'Resource'},
     weekDay:{type:Number,enum:[0,1,2,3,4,5,6]},
     cast:[{type:String}],
     staff:[{type:String}],
