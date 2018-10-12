@@ -66,9 +66,14 @@ app.use(async(ctx,next)=>{
         }
         
     } else {
-       ctx.body = {
-           success:false
+       if(ctx.request.originalUrl.indexOf("bangumis")>-1){
+            await next();
+       }else{
+            ctx.body = {
+                success:false
+            }
        }
+       
 
 
     }
