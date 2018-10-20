@@ -5,7 +5,8 @@ const Bangumi = require("../models/bangumi");
 
 
 router.get("/",async(ctx)=>{
-    let weekday = parseInt(ctx.request.query.weekday);
+    
+    let weekday = ctx.request.query.weekday;
     
     let bangumiList = await Bangumi.find({weekDay:weekday}).populate("cover").exec();
     ctx.body = bangumiList;
