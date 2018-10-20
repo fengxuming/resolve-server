@@ -7,7 +7,7 @@ let bangumiSchema = new Schema({
     title:{type:String,required:true},
     info:{type:String},
     cover:{type:mongoose.Schema.Types.ObjectId,ref:'Resource'},
-    weekDay:{type:Number,enum:[0,1,2,3,4,5,6]},
+    weekDay:{type:Number,enum:[0,1,2,3,4,5,6],index:true},
     cast:[{type:String}],
     staff:[{type:String}],
     dateCreated:{type:Date,"default":Date.now},
