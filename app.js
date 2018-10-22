@@ -11,6 +11,8 @@ const uploadRoute = require("./routes/upload");
 const User = require("./models/user");
 var jwt = require('jsonwebtoken');
 const koaBody = require('koa-body');
+const NodeRSA = require("node-rsa");
+const fs = require("fs");
 
 const app = new Koa();
 
@@ -46,6 +48,32 @@ app.use(bodyParser());
 
 //mount static resource in route
 app.use(mount("/public",static(__dirname + "/static")));
+
+
+//node-rsa非对称加密
+let key = new NodeRSA({b: 512});//生成512位秘钥
+let pubkey = key.exportKey('pkcs8-public');//导出公钥
+let prikey = key.exportKey('pkcs8-private');//导出私钥
+fs.writeFileSync("./pubkey.pem",pubkey);
+fs.writeFileSync("./prikey.pem",prikey);
+//前端获取公钥的接口
+app.use(mount("/getPubkey",async(ctx)=>{
+    try {
+        let pubkey = fs.readFileSync("./pubkey.pem","utf8");
+        ctx.body = {
+            success:true,
+            data:{
+                pubkey:pubkey
+            }
+        }
+    } catch (error) {
+        ctx.body = {
+            success:false,
+            errorMsg:error
+        }
+    }
+    
+}));
 
 //登录
 app.use(mount("/login",loginRoute.routes()));
