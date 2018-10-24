@@ -47,7 +47,9 @@ app.use(cors());
 app.use(bodyParser());
 
 //mount static resource in route
-app.use(mount("/public",static(__dirname + "/static")));
+app.use(mount("/public",static(__dirname + "/static",{
+    maxage:"2592000000"
+})));
 
 
 //node-rsa非对称加密
