@@ -6,6 +6,9 @@ const bodyParser = require('koa-bodyparser');
 const indexRoute =require("./routes/index");
 const userRoute = require("./routes/user");
 const bangumiRoute = require("./routes/bangumi");
+const torrentRoute = require("./routes/torrent");
+const crawlerSettingRoute = require("./routes/crawlerSetting");
+const zimuzuRoute = require("./routes/zimuzu");
 const loginRoute = require("./routes/login");
 const uploadRoute = require("./routes/upload");
 const User = require("./models/user");
@@ -13,6 +16,10 @@ var jwt = require('jsonwebtoken');
 const koaBody = require('koa-body');
 const NodeRSA = require("node-rsa");
 const fs = require("fs");
+const CrawlerWorks = require("./crawler/CrawlerWorks");
+
+
+const TorrentCrawler = require("./crawler/TorrentCrawler");
 
 const app = new Koa();
 
@@ -96,7 +103,7 @@ app.use(async(ctx,next)=>{
         }
         
     } else {
-       if(ctx.request.originalUrl.indexOf("bangumis")>-1){
+       if(ctx.request.originalUrl.indexOf("bangumis")>-1||ctx.request.originalUrl.indexOf("torrents")>-1){
             await next();
        }else{
             ctx.body = {
@@ -113,6 +120,12 @@ app.use(mount("/",indexRoute.routes()));
 app.use(mount("/users",userRoute.routes()));
 app.use(mount("/bangumis",bangumiRoute.routes()));
 app.use(mount("/uploads",uploadRoute.routes()));
+app.use(mount("/torrents",torrentRoute.routes()));
+app.use(mount("/crawlerSettings",crawlerSettingRoute.routes()));
+app.use(mount("/zimuzus",zimuzuRoute.routes()));
+
+
+new CrawlerWorks().startWorks();
 
 
 
