@@ -124,7 +124,7 @@ app.use(mount("/users",userRoute.routes()));
 app.use(mount("/bangumis",bangumiRoute.routes()));
 app.use(mount("/uploads",uploadRoute.routes()));
 app.use(mount("/torrents",torrentRoute.routes()));
-app.use(mount("/",crawlerSettingRoute.routes()));
+app.use(mount("/crawlerSettings",crawlerSettingRoute.routes()));
 app.use(mount("/zimuzus",zimuzuRoute.routes()));
 
 

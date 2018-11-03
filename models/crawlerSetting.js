@@ -7,7 +7,7 @@ let crawlerSettingSchema = new Schema({
     bangumiName:{type:String},
     zimuzu:{type:Number},
     intervalTime:{type:String},//抓取间隔时间
-    bangumi:{type:mongoose.Schema.Types.ObjectId,ref:'Bangumi'},
+    bangumi:{type:mongoose.Schema.Types.ObjectId,ref:'Bangumi',index:true},
     dateCreated:{type:Date,"default":Date.now},
     dateUpdated:{type:Date,"default":Date.now}
 });
