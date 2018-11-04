@@ -129,6 +129,10 @@ app.use(mount("/zimuzus",zimuzuRoute.routes()));
 
 
 new CrawlerWorks().startWorks();
+setInterval(()=>{
+    new CrawlerWorks().startWorks();
+},21600000)
+
 
 
 
