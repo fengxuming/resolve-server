@@ -7,9 +7,6 @@ const Zimuzu = require("../models/zimuzu");
 router.get("/",async(ctx)=>{
     let params = {};
     
-    
-    
-
     let zimuzuList = await Zimuzu.find(params).exec();
     ctx.body = zimuzuList;
     
