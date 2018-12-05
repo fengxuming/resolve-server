@@ -14,6 +14,8 @@ class CrawlerWorks{
                 zimuzu:this.crawlerSetting[index].zimuzu,
                 bangumiId:this.crawlerSetting[index].bangumi
             }).startCrawler();
+            console.log("ff")
+            
         }
 
     }
