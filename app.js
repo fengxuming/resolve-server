@@ -128,9 +128,11 @@ app.use(mount("/crawlerSettings",crawlerSettingRoute.routes()));
 app.use(mount("/zimuzus",zimuzuRoute.routes()));
 
 
-new CrawlerWorks().startWorks();
+let craler = new CrawlerWorks();
+
+craler.startWorks();
 setInterval(()=>{
-    new CrawlerWorks().startWorks();
+    craler.startWorks();
 },21600000)
 
 

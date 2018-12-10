@@ -30,7 +30,7 @@ class TorrentCrawler{
     async startCrawler(){
         this.torrentCount = await Torrent.find({bangumi:this.bangumiId}).countDocuments().exec();
         
-     await this.getPageLinkList();
+       this.getPageLinkList();
         
     }
 
@@ -96,6 +96,7 @@ class TorrentCrawler{
                 fileList:fileListArray,
                 bangumi:this.bangumiId
             }).save();
+            console.log(result);
         });
     }
 
