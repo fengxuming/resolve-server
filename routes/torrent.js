@@ -5,13 +5,19 @@ const Torrent = require("../models/torrent");
 
 
 router.get("/",async(ctx)=>{
+    let offset = parseInt(ctx.request.query.offset || 0);
+    let maxSize = parseInt(ctx.request.query.maxSize || 20);
     let params = {};
     if(ctx.request.query.bangumiId){
         params.bangumi = ctx.request.query.bangumiId
     }
-
-    let torrentList = await Torrent.find(params).sort({title:-1}).exec();
-    ctx.body = torrentList;
+    let totalRecords = await Torrent.find({}).count();
+    let torrentList = await Torrent.find(params).limit(maxSize).skip(offset).sort({title:-1}).exec();
+    ctx.body = {
+        success:true,
+        totalRecords : totalRecords,
+        datas:torrentList
+    };
     
 })
 

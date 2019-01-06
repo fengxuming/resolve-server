@@ -5,15 +5,27 @@ const Bangumi = require("../models/bangumi");
 
 
 router.get("/",async(ctx)=>{
-    let params = {};
+    let offset = parseInt(ctx.request.query.offset || 0);
+    let maxSize = parseInt(ctx.request.query.maxSize || 20);
+    let startDate = ctx.request.query.startDate || "2018-10"; 
+    let params = {
+       startDate:startDate
+    };
     if(ctx.request.query.weekday){
         params.weekDay = ctx.request.query.weekday
     }
     
     
+    let totalRecords = await Bangumi.find(params).count();
+    let bangumiList = await Bangumi.find(params).limit(maxSize).skip(offset).populate("cover").exec();
+    ctx.body = {
+        success:true,
+        totalRecords:totalRecords,
+        datas:bangumiList
+    };
 
-    let bangumiList = await Bangumi.find(params).populate("cover").exec();
-    ctx.body = bangumiList;
+
+
     
 })
 

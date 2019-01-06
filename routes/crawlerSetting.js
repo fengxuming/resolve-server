@@ -5,11 +5,17 @@ const CrawlerSetting = require("../models/crawlerSetting");
 
 
 router.get("/",async(ctx)=>{
+    let offset = parseInt(ctx.request.query.offset || 0);
+    let maxSize = parseInt(ctx.request.query.maxSize || 20);
     let params = {};
 
-
-    let crawlerSettingList = await CrawlerSetting.find(params).exec();
-    ctx.body = crawlerSettingList;
+    let totalRecords = await CrawlerSetting.find({}).count();
+    let crawlerSettingList = await CrawlerSetting.find(params).limit(maxSize).skip(offset).exec();
+    ctx.body = {
+        success:true,
+        totalRecords :totalRecords,
+        datas:crawlerSettingList
+    };
     
 })
 

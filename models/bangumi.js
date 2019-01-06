@@ -10,6 +10,7 @@ let bangumiSchema = new Schema({
     weekDay:{type:Number,enum:[0,1,2,3,4,5,6],index:true},
     cast:[{type:String}],
     staff:[{type:String}],
+    startDate:{type:String,required:true}, //放送日期  yyyy-mm
     dateCreated:{type:Date,"default":Date.now},
     dateUpdated:{type:Date,"default":Date.now}
 });

@@ -8,6 +8,8 @@ const userRoute = require("./routes/user");
 const bangumiRoute = require("./routes/bangumi");
 const torrentRoute = require("./routes/torrent");
 const crawlerSettingRoute = require("./routes/crawlerSetting");
+const bvideoRoute = require("./routes/bvideo");
+const chartsRoute = require("./routes/charts");
 const zimuzuRoute = require("./routes/zimuzu");
 const loginRoute = require("./routes/login");
 const uploadRoute = require("./routes/upload");
@@ -17,6 +19,8 @@ const koaBody = require('koa-body');
 const NodeRSA = require("node-rsa");
 const fs = require("fs");
 const CrawlerWorks = require("./crawler/CrawlerWorks");
+
+const BilibiliCrawler = require("./crawler/BilibiliCrawler");
 
 
 const TorrentCrawler = require("./crawler/TorrentCrawler");
@@ -106,7 +110,7 @@ app.use(async(ctx,next)=>{
         }
         
     } else {
-       if(ctx.request.originalUrl.indexOf("bangumis")>-1||ctx.request.originalUrl.indexOf("torrents")>-1){
+       if(ctx.request.originalUrl.indexOf("bangumis")>-1||ctx.request.originalUrl.indexOf("torrents")>-1||ctx.request.originalUrl.indexOf("charts")>-1){
             await next();
        }else{
             ctx.body = {
@@ -127,13 +131,27 @@ app.use(mount("/torrents",torrentRoute.routes()));
 app.use(mount("/crawlerSettings",crawlerSettingRoute.routes()));
 app.use(mount("/zimuzus",zimuzuRoute.routes()));
 
+app.use(mount("/bvideos",bvideoRoute.routes()));
+app.use(mount("/charts",chartsRoute.routes()));
+
+
+// let craler = new CrawlerWorks();
+
+// craler.startWorks();
+// setInterval(()=>{
+//     craler.startWorks();
+// },21600000)
+
+
 
 let craler = new CrawlerWorks();
-
-craler.startWorks();
+craler.startBWorks();
 setInterval(()=>{
-    craler.startWorks();
-},21600000)
+    craler.startBWorks();
+},3000)
+
+
+
 
 
 

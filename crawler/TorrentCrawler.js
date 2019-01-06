@@ -36,10 +36,11 @@ class TorrentCrawler{
 
     async getPageLinkList(){
         let listPage = await rp(this.url+this.keywordParams+this.teamParams+this.orderParams);
+        
         const $listPage = cheerio.load(listPage);
 
         let torrentList = $listPage("#topic_list tbody tr");
-
+       
         
         let pageLinkList = this.pageLinkList;
         
@@ -49,7 +50,9 @@ class TorrentCrawler{
             torrentList.each(function(i,torrentItem){
                 
                 if((torrentList.length-i)>=torrentCount){
+                    
                     let pageLink = $listPage(this).find(".title span").next().attr("href");
+                    
                     pageLinkList.push(pageLink);
                 }
 
@@ -85,7 +88,8 @@ class TorrentCrawler{
         let title = $detailPage(".topic-title h3").text();
         let torrentLink = $detailPage("#tabs-1 p a").attr("href");
         let name = torrentLink.split("/")[torrentLink.split("/").length - 1];
-        let writeStream = fs.createWriteStream(this.saveFolder +name);
+        let writeStream = fs.writeFileSync(this.saveFolder +name);
+        fs.cre
         rp("http:"+torrentLink).pipe(writeStream);
 
         writeStream.on("close",async ()=>{
@@ -96,7 +100,7 @@ class TorrentCrawler{
                 fileList:fileListArray,
                 bangumi:this.bangumiId
             }).save();
-            console.log(result);
+            
         });
     }
 
