@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 const router = new Router();
-const Bvideo = require("../models/Bvideo");
+const Bvideo = require("../models/bvideo");
 
 
 router.all("*",async(ctx,next)=>{
