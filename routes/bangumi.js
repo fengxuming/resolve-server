@@ -11,9 +11,9 @@ router.get("/",async(ctx)=>{
     let startDate = ctx.request.query.startDate; 
     let title = ctx.request.query.title ; 
     let params = {};
-    // if(startDate){
-    //     params.startDate = startDate;
-    // }
+    if(startDate){
+        params.startDate = startDate;
+    }
     if(title){
         
         let keyword = title;
