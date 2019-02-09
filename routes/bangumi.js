@@ -7,10 +7,21 @@ const Bangumi = require("../models/bangumi");
 router.get("/",async(ctx)=>{
     let offset = parseInt(ctx.request.query.offset || 0);
     let maxSize = parseInt(ctx.request.query.maxSize || 20);
-    let startDate = ctx.request.query.startDate || "2018-10"; 
-    let params = {
-       startDate:startDate
-    };
+    
+    let startDate = ctx.request.query.startDate; 
+    let title = ctx.request.query.title ; 
+    let params = {};
+    if(startDate){
+        params.startDate = startDate;
+    }
+    if(title){
+        
+        let keyword = title;
+        let reg = new RegExp(keyword, 'i');
+        params.title = {$regex : reg};
+       
+    }
+    
     if(ctx.request.query.weekday){
         params.weekDay = ctx.request.query.weekday
     }

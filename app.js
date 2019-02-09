@@ -148,7 +148,7 @@ let craler = new CrawlerWorks();
 craler.startBWorks();
 setInterval(()=>{
     craler.startBWorks();
-},3000)
+},300000)
 
 
 
