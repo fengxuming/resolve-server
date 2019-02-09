@@ -1,7 +1,7 @@
 const CrawlerSetting = require("../models/crawlerSetting");
 const TorrentCrawler = require("./TorrentCrawler");
 
-const Bvideo = require("../models/Bvideo");
+const Bvideo = require("../models/bvideo");
 const BilibiliCrawler = require("../crawler/BilibiliCrawler");
 class CrawlerWorks{
     constructor(){
