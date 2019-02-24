@@ -88,8 +88,8 @@ class TorrentCrawler{
         let title = $detailPage(".topic-title h3").text();
         let torrentLink = $detailPage("#tabs-1 p a").attr("href");
         let name = torrentLink.split("/")[torrentLink.split("/").length - 1];
-        let writeStream = fs.writeFileSync(this.saveFolder +name);
-        fs.cre
+        let writeStream = fs.createWriteStream(this.saveFolder +name);
+      
         rp("http:"+torrentLink).pipe(writeStream);
 
         writeStream.on("close",async ()=>{

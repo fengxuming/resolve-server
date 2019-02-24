@@ -32,10 +32,12 @@ class CrawlerWorks{
         
         
         for(let index=0;index<this.crawlerSetting.length;index++){
+            let id = this.crawlerSetting[index].bangumi[0]._id;
+            console.log(id);
             await new TorrentCrawler({
                 bangumiName:this.crawlerSetting[index].bangumiName,
                 zimuzu:this.crawlerSetting[index].zimuzu,
-                bangumiId:this.crawlerSetting[index].bangumi
+                bangumiId:this.crawlerSetting[index].bangumi[0]._id
             }).startCrawler();
             
             
