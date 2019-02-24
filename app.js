@@ -144,7 +144,7 @@ setInterval(()=>{
 
 
 
-let craler = new CrawlerWorks();
+// let craler = new CrawlerWorks();
 craler.startBWorks();
 setInterval(()=>{
     craler.startBWorks();
