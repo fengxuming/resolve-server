@@ -10,7 +10,7 @@ router.get("/",async(ctx)=>{
     let params = {};
 
     let totalRecords = await CrawlerSetting.find({}).count();
-    let crawlerSettingList = await CrawlerSetting.find(params).limit(maxSize).skip(offset).exec();
+    let crawlerSettingList = await CrawlerSetting.find(params).populate("bangumi").limit(maxSize).skip(offset).exec();
     ctx.body = {
         success:true,
         totalRecords :totalRecords,

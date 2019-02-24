@@ -10,8 +10,27 @@ class CrawlerWorks{
 
     async startWorks(){
         // 获取当前爬虫设置列表
-        this.crawlerSetting = await CrawlerSetting.find({}).exec();
+        this.crawlerSetting = await CrawlerSetting.aggregate([
+            {
+                $lookup:
+                  {
+                    from: "bangumis",
+                    localField: "bangumi",
+                    foreignField: "_id",
+                    as: "bangumi"
+                  }
+             },
+             {
+                $match:
+                  {
+                    "bangumi.startDate":"2019-1"
+                  },
+            },
+            
+        ]);
 
+        
+        
         for(let index=0;index<this.crawlerSetting.length;index++){
             await new TorrentCrawler({
                 bangumiName:this.crawlerSetting[index].bangumiName,

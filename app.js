@@ -145,10 +145,10 @@ setInterval(()=>{
 
 
 // let craler = new CrawlerWorks();
-craler.startBWorks();
-setInterval(()=>{
-    craler.startBWorks();
-},300000)
+// craler.startBWorks();
+// setInterval(()=>{
+//     craler.startBWorks();
+// },300000)
 
 
 
