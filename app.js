@@ -135,12 +135,12 @@ app.use(mount("/bvideos",bvideoRoute.routes()));
 app.use(mount("/charts",chartsRoute.routes()));
 
 
-// let craler = new CrawlerWorks();
+let craler = new CrawlerWorks();
 
-// craler.startWorks();
-// setInterval(()=>{
-//     craler.startWorks();
-// },21600000)
+craler.startWorks();
+setInterval(()=>{
+    craler.startWorks();
+},21600000)
 
 
 
