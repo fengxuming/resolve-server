@@ -137,10 +137,10 @@ app.use(mount("/charts",chartsRoute.routes()));
 
 let craler = new CrawlerWorks();
 
-craler.startWorks();
-setInterval(()=>{
-    craler.startWorks();
-},21600000)
+// craler.startWorks();
+// setInterval(()=>{
+//     craler.startWorks();
+// },21600000)
 
 
 
