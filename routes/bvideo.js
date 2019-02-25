@@ -18,7 +18,13 @@ router.get("/",async(ctx)=>{
     
     let params = {
     //    startDate:startDate
+        
     };
+
+    let bangumiId = ctx.request.query.bangumiId;
+    if(bangumiId){
+        params.bangumiId = bangumiId;
+    }
     
     
     
