@@ -110,7 +110,7 @@ app.use(async(ctx,next)=>{
         }
         
     } else {
-       if(ctx.request.originalUrl.indexOf("bangumis")>-1||ctx.request.originalUrl.indexOf("torrents")>-1||ctx.request.originalUrl.indexOf("charts")>-1){
+       if(ctx.request.originalUrl.indexOf("bangumis")>-1||ctx.request.originalUrl.indexOf("torrents")>-1||ctx.request.originalUrl.indexOf("charts")>-1||ctx.request.originalUrl.indexOf("bvideos")>-1){
             await next();
        }else{
             ctx.body = {

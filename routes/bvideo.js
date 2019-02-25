@@ -3,15 +3,7 @@ const router = new Router();
 const Bvideo = require("../models/bvideo");
 
 
-router.all("*",async(ctx,next)=>{
-    if(ctx.request.user&&(ctx.request.user.role == "admin")){
-        await next();
-    }else{
-        ctx.body = {
-            success:false
-        }
-    }
-});
+
 router.get("/",async(ctx)=>{
     let offset = parseInt(ctx.request.query.offset || 0);
     let maxSize = parseInt(ctx.request.query.maxSize || 20);
@@ -42,12 +34,23 @@ router.get("/",async(ctx)=>{
 })
 
 
+
 router.get("/:id",async(ctx)=>{
     let id = ctx.params.id;
     let bvideo = await Bvideo.findOne({_id:id}).exec();
     ctx.body = bvideo;
     
 })
+
+router.all("*",async(ctx,next)=>{
+    if(ctx.request.user&&(ctx.request.user.role == "admin")){
+        await next();
+    }else{
+        ctx.body = {
+            success:false
+        }
+    }
+});
 
 
 router.post("/",async(ctx)=>{
