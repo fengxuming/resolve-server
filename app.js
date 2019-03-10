@@ -11,6 +11,7 @@ const crawlerSettingRoute = require("./routes/crawlerSetting");
 const bvideoRoute = require("./routes/bvideo");
 const chartsRoute = require("./routes/charts");
 const zimuzuRoute = require("./routes/zimuzu");
+const bangumiStatRoute = require("./routes/bangumiStats");
 const loginRoute = require("./routes/login");
 const uploadRoute = require("./routes/upload");
 const User = require("./models/user");
@@ -130,7 +131,7 @@ app.use(mount("/uploads",uploadRoute.routes()));
 app.use(mount("/torrents",torrentRoute.routes()));
 app.use(mount("/crawlerSettings",crawlerSettingRoute.routes()));
 app.use(mount("/zimuzus",zimuzuRoute.routes()));
-
+app.use(mount("/bangumiStats",bangumiStatRoute.routes()));
 app.use(mount("/bvideos",bvideoRoute.routes()));
 app.use(mount("/charts",chartsRoute.routes()));
 

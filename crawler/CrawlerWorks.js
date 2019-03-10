@@ -25,7 +25,7 @@ class CrawlerWorks{
                   {
                     "bangumi.startDate":"2019-1"
                   },
-            },
+             },
             
         ]);
 
